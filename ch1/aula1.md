@@ -1,5 +1,5 @@
 ---
-title: FSO - Aula 1
+title: FSO - Aulas 1 e 2 - Capítulo 1
 author: "Nicolas Chagas Souza"
 date: 31/10/2022
 geometry: left=2cm,right=2cm,top=1cm,bottom=2cm
@@ -106,9 +106,41 @@ Um sistema operacional é um programa de controle.
 
 - Controla a execução dos programas para prevenir erros e uso impróprio do computador.
 
-## Computer Startup 
+## Computer Startup
 
+- **Bootstrap program** é carregado na inicialização ou reboot;
+  - Geralmente armazenado em ROM ou EPROM e conhecido como **firmware**.
+  - Inicia todos os aspectos do sistema.
+  - Carrega o kernel do sistema operacional e começa a execução.
 
 ## Computer System Organization
 
+![](imgs/08-29-10.png)
+
 ## Computer-System Operation
+
+- I/O devices and the CPU can execute concurrently
+- Each device controller is in charge of a particular device type and has a local buffer
+- CPU moves data from/to main memory to/from local buffers
+- I/O goes from the device to the controller's buffer
+- Device controller informs CPU that it's finished its operation by causing and **interrupt**
+
+## Common Functions of Interrupts
+
+- The interrupt vector contains the addresses of all the service routines.
+- interrupt architecture must save the address of the interrupted instruction
+- A trap or exception is a software-generated interrupt caused either by and error or user request
+- An operating system is interrupt driven
+
+## Interrupt Handling
+
+- The operating system preserves the state of the CPU by storing registers and the program counter
+- Determines which type of interrupt has occurred:
+  - polling
+  - vectored interrupt system
+- Separate segments of code determine what action should be taken for each type of interrupt
+
+![](imgs/08-41-30.png)
+
+
+## I/O Structure 
