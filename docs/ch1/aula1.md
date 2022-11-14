@@ -6,25 +6,7 @@ geometry: left=2cm,right=2cm,top=1cm,bottom=2cm
 output: pdf_document
 ---
 
-## Plano de Ensino
 
-Haverá três avaliações:
-
-- Prova 1: 25/11 (sexta-feira)
-- Prova 2: 23/12 (sexta-feira)
-- Prova 3: 03/02 (sexta-feira)
-- Prova substitutiva: 06/02 (segunda-feira)
-
-Média final:
-
-$ MP = 0,1 \cdot P1 + 0,3 \cdot P2 + 0,6 \cdot P3 $<br/>
-$ MF = 0,6 \cdot MP + 0,4 \cdot MT $
-
-Na média ponderada dos trabalhos (MT), no juiz online (CD-MOJ), o trabalho $T_n$ terá peso $n$.
-
-> Critério de aprovação:
->
-> $ MF \geq 5 \wedge MP \geq 5 \wedge frequência \geq 75\% $.
 
 ## Aula 1 - Introdução aos Sistemas Operações
 

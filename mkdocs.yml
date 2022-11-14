@@ -4,6 +4,8 @@ theme:
   name: bootstrap386
 
 nav:
-  - "aulas 1 e 2": ch1/aula1.md
-  - "aula 3": ch2/aula3.md
-  - "aula 4": ch3/aula4.md
+  
+  - "chapter 1": ch1/aula1.md
+  - "chapter 2": ch2/aula3.md
+  - "chapter 3": ch3/aula4.md
+
