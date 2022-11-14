@@ -1,0 +1,9 @@
+site_name: FSO - notes
+
+theme:
+  name: bootstrap386
+
+nav:
+  - "aulas 1 e 2": ch1/aula1.md
+  - "aula 3": ch2/aula3.md
+  - "aula 4": ch3/aula4.md
