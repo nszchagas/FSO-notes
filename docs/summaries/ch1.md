@@ -72,26 +72,35 @@ Há também os usuários de workstations conectadas à redes de workstations e s
 
 Do ponto de vista do computador, o SO é o programa mais intimamente ligado ao hardware. Podemos ver um sistema operacional como um alocador de recursos, agindo como gerenciador desses recursos e resolvendo os conflitos de acesso a eles.
 
-Um sistema operacional é um programa de controle.
-
-- Controla a execução dos programas para prevenir erros e uso impróprio do computador.
+Um sistema operacional também pode ser visto como um programa de controle, isto é, um programa que controla a execução dos programas para prevenir erros e uso impróprio do computador. Ele preocupa-se, especialmente, com a operação e controle dos dispositivos I/O.
 
 > Definição de Sistema Operacional
 >
 > A definição mais comum é: o sistema operacional é o programa sendo executado durante todo o funcionado no computador, geralmente chamado de kernel.
 
-Computer Startup
+## Sistemas computacionais
 
-- **Bootstrap program** é carregado na inicialização ou reboot;
-  - Geralmente armazenado em ROM ou EPROM e conhecido como **firmware**.
-  - Inicia todos os aspectos do sistema.
-  - Carrega o kernel do sistema operacional e começa a execução.
+### Organização
 
-## Computer System Organization
+Um computador moderno de propósito geral consiste de uma ou mais CPUs e uma quantidade de controladores de dispositivos conectados por meio de um barramento comum, que provê acesso à memória compartilhada. A CPU e os dispositivos podem funcionar em paralelo, competindo por ciclos de memória, e para assegurar o acesso ordenado à memória, o controlador da memória sincroniza o acesso à ela.
 
-![](imgs/08-29-10.png)
+![Organização de um sistema computacional moderno](imgs/11-35-15.png)
 
-## Computer-System Operation
+Para que o computador comece a funcionar, após ser ligado ou reiniciado, é necessário que ele tenha um programa inicial para rodar, chamado de **bootstrap program**, que tende a ser simples. Geralmente tal programa é armazenado no hardware do computador na memória de leitura (ROM) ou na memória programável e apagável elétrica (EEPROM) e é conhecido por **firmware**. Ele inicializa todos os aspectos do sistema, desde os registradores da CPU, até os controladores de dispositivos e conteúdo da memória. O programa de bootstrap deve saber como carregar o sistema operacional e executá-lo, localizando o kernel do sistema operacional e carregando-o na memória.
+
+Após o carregamento do kernel, ele pode começar a fornecer serviços para o sistema e seus usuários. Alguns serviços são fornecidos fora do kernel, por programas de sistema que são carregados na memória em tempo de inicialização e tornam-se processos do sistema, ou daemons do sistema, que rodam durante todo o tempo de execução do kernel.
+
+A ocorrência de um evento geralmente é sinalizada por meio de uma interrupção, tanto do hardware quanto do software. O hardware pode provocar uma interrupção a qualquer instante enviando um sinal para a CPU, geralmente por meio do barramento. O software pode provocar uma interrupção executando uma chamada de sistema (system call ou monitor call).
+
+Quando a CPU é interrompida, ela para imediatamente o que estiver executando e transfere a execução para uma localização fixada, que geralmente contém o endereço de início da rotina a ser executada. A rotina de interrupção é executada e, após sua finalização, a CPU continua a computação que foi interrompida.
+
+![Linha do tempo de interrupções](imgs/08-41-30.png)
+
+Como existe uma quantidade predeterminada de interrupções possíveis, uma tabela de ponteiros para rotinas de interrupção pode ser usada para aumentar a velocidade de execução. Geralmente essa tabela é armazenada em endereços baixos de memória, onde são guardados os endereços para as rotinas de interrupção de diversos dispositivos. Esse array, ou **vetor de interrupções**, é indexado por um número único por dispositivo, fornecendo o endereço da rotina a ser executada.
+
+O endereço de retorno após a interrupção também deve ser armazenado, geralmente na pilha do sistema, e é recuperado para o contador de programa após a interrupção.
+
+### Computer-System Operation
 
 - I/O devices and the CPU can execute concurrently
 - Each device controller is in charge of a particular device type and has a local buffer
@@ -99,7 +108,7 @@ Computer Startup
 - I/O goes from the device to the controller's buffer
 - Device controller informs CPU that it's finished its operation by causing and **interrupt**
 
-## Common Functions of Interrupts
+### Common Functions of Interrupts
 
 - The interrupt vector contains the addresses of all the service routines.
 - interrupt architecture must save the address of the interrupted instruction
@@ -114,8 +123,10 @@ Computer Startup
   - vectored interrupt system
 - Separate segments of code determine what action should be taken for each type of interrupt
 
-![](imgs/08-41-30.png)
-
 ## I/O Structure
 
-## [Exercises](../misc/exercises.md#chapter-1)
+### [Exercises](../misc/exercises.md#chapter-1)
+
+### Referência Bibliográfica
+
+- SILBERSCHATZ A., GALVIN P., GAGNE G. Operating System Concepts, 9th Edition.

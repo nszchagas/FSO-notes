@@ -2,11 +2,11 @@
 
 ## Chapter 1
 
-1. What are the three main purposes of an operating system?
+- What are the three main purposes of an operating system?
 
 Execute user programs and make solving user problems easier, make computer system convenient to use and use the computer hardware in an efficient manner.
 
-2. We have stressed the need for an operating system to make efficient use of the computing hardware. When is it appropriate for the operating system to forsake this principle and to “waste” resources? Why is such a system not really wasteful?
+- We have stressed the need for an operating system to make efficient use of the computing hardware. When is it appropriate for the operating system to forsake this principle and to “waste” resources? Why is such a system not really wasteful?
 
 When the resources aren't shared between different users, such as personal computers, these users want convenience, ease of use and good performance, in this case it's appropriate to "waste" resources to provide an easy to use interface, for example.
 
@@ -118,7 +118,7 @@ aspect to be an advantage or a disadvantage. -->
 
 ## Chapter 2
 
-01. What is the purpose of system calls?
+<!-- 01. What is the purpose of system calls?
 02. What are the five major activities of an operating system with regard to process management?
 03. What are the three major activities of an operating system with regard to memory management?
 04. What are the three major activities of an operating system with regard to secondary-storage management?
@@ -164,9 +164,6 @@ system call must take through the kernel. This approach is the antithesis
 of the layered approach, in which the path through the kernel is extended
 to make building the operating system easier. Discuss the pros and cons
 of the Synthesis approach to kernel design and system-performance
-optimization.
-
-
+optimization. -->
 
 ## Chapter 3
-

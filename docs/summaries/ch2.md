@@ -1,10 +1,3 @@
----
-title: FSO - Aula 3
-author: "Nicolas Chagas Souza"
-date: 07/11/2022
-geometry: left=2cm,right=2cm,top=1cm,bottom=2cm
-output: pdf_document
----
 
 ## Operating system services
 
@@ -120,7 +113,7 @@ There are three general methods used to pass parameters to the OS:
 
 ## System Programs
 
-- System programs provide a convenient environment for program development and execution, they can be divided into: 
+- System programs provide a convenient environment for program development and execution, they can be divided into:
   - File manipulation
   - Status information sometimes stored in a File modification
   - Programming language support

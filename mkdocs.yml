@@ -6,6 +6,6 @@ theme:
 nav:
   - "Chapter 1": summaries/ch1.md
   - "Chapter 2": summaries/ch2.md
-  # - "Chapter 3": ch3/aula4.md
+  # - "Chapter 3": summaries/ch3.md
 
   - "Exercises": misc/exercises.md
