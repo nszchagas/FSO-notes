@@ -1,11 +1,18 @@
 site_name: FSO - notes
 
 theme:
-  name: bootstrap386
+  name: alabaster
+  # palette:
+  #   scheme: slate
+  #   primary: blue gray
+  #   accent: gray
+  # icon: dvr
 
 nav:
-  - "Chapter 1": summaries/ch1.md
-  - "Chapter 2": summaries/ch2.md
-  # - "Chapter 3": summaries/ch3.md
+  - About: index.md
+  - Chapter 1: summaries/ch1.md
+  - Chapter 2: summaries/ch2.md
+  # - Chapter 3: summaries/ch3.md
+  # - Chapter 4: summaries/ch4.md
 
-  - "Exercises": misc/exercises.md
+  # - Exercises: misc/exercises.md

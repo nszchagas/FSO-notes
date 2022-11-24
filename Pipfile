@@ -7,6 +7,7 @@ name = "pypi"
 mkdocs-bootstrap386 = "*"
 mkdocs-bootstrap = "*"
 mkdocs-material = "*"
+mkdocs-alabaster = "*"
 
 [dev-packages]
 
