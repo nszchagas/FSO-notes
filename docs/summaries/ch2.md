@@ -83,54 +83,41 @@ Figure 2: Handling of the open() system call. Source: [1]
 - The system call interface invokes the intended system call in OS kernel and return status of the system call and any return values.
 - The caller need to know nothing about how the system call is implemented, just need to obey the API and understand what OS will do as a result call. Most details of OS interface is hidden from programmer by API.
 
-
-Figure 2:
-
-## System Call Parameter Passing
-
 There are three general methods used to pass parameters to the OS:
 
-- Simplest: passing the parameters in registers.
-- Parameters stored in a block or table in memory, and address of block passed as a parameter in a register (approach taken by Linux and Solaris)
+- The simplest way, passing the parameters in **registers**.
+- Parameters stored in a **block** or **table** in memory, and address of block passed as a parameter in a register (approach taken by Linux and Solaris), as illustrated by Figure 3.
 - Parameters **pushed** onto the **stack** by the program and **popped** off the stack by the OS.
 
-![](imgs/08-51-51.png)
+![](imgs/21-40-09.png)
+<div style="text-align: center">
+Figure 3: System call parameter passing. Source: [1]
+</div>
 
 ## Types of System Calls
 
-- Process control
-  - end, abort
-  - load, execute
-  - create process, terminate process
-  - get process attributes, set process attributes
-  - wait for time
-  - wait event, signal event
-  - allocate and free memory
-- File management
-  - create ﬁle, delete ﬁle
-  - open, close
-  - read, write, reposition
-  - get ﬁle attributes, set ﬁle attributes
-- Device management
-  - request device, release device
-  - read, write, reposition
-  - get device attributes, set device attributes
-  - logically attach or detach devices
-- Information maintenance
-  - get time or date, set time or date
-  - get system data, set system data
-  - get process, ﬁle, or device attributes
-  - set process, ﬁle, or device attributes
-- Communications
-  - create, delete communication connection
-  - send, receive messages
-  - transfer status information
-  - attach or detach remote devices
+System calls can be grouped in six categories, and the types of system calls for each one are represented in the Table 1 below.
+
+| Category | Types of system calls |
+| - | - |
+| Process control | - end, abort <br/> - load, execute <br/> - create process, terminate process <br/> - get process attributes, set process attributes <br/> - wait for time <br/> - wait event, signal event <br/> - allocate and free memory <br/>  |
+| File management | - create ﬁle, delete ﬁle <br/> - open, close <br/> - read, write, reposition <br/> - get ﬁle attributes, set ﬁle attributes <br/>  |
+| Device management | - request device, release device <br/> - read, write, reposition <br/> - get device attributes, set device attributes <br/> - logically attach or detach devices <br/>  |
+| Information maintenance | - get time or date, set time or date <br/> - get system data, set system data <br/> - get process, ﬁle, or device attributes <br/> - set process, ﬁle, or device attributes <br/>  |
+| Communications | - create, delete communication connection <br/> - send, receive messages <br/> - transfer status information <br/> - attach or detach remote devices <br/> |
+<div style="text-align: center">
+Table 1: Types of system calls per category. Source: [1]
+</div>
 
 ![](imgs/08-53-17.png)
+<div style="text-align: center">
+Figure 4: Windows and UNIX system calls. Source: [1]
+</div>
 
 ![](imgs/08-55-58.png)
-
+<div style="text-align: center">
+Figure 5: Types of system calls per category. Source: [1]
+</div>
 ## Examples
 
 ![](imgs/08-59-16.png)
