@@ -12,6 +12,5 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: 3.x
-      - run: pip install mkdocs-bootstrap
-      - run: pip install mkdocs-bootstrap386
+      - run: pip install mkdocs-alabaster
       - run: mkdocs gh-deploy --force
