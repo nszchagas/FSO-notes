@@ -10,7 +10,7 @@ Execute user programs and make solving user problems easier, make computer syste
 
 When the resources aren't shared between different users, such as personal computers, these users want convenience, ease of use and good performance, in this case it's appropriate to "waste" resources to provide an easy to use interface, for example.
 
-<!--
+<!--![](imgs/2022-11-30-11-48-52.png)
 3. What is the main difficulty that a programmer must overcome in writing an operating system for a real-time environment?
 
 4. Keeping in mind the various definitions of operating system, consider whether the operating system should include applications such as web browsers and mail programs. Argue both that it should and that it should not, and support your answers.
