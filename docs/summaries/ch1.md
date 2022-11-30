@@ -56,7 +56,7 @@ Um sistema computacional pode ser dividido em quatro componentes:
 - Usuários
   - Pessoas, máquinas ou outros computadores.
 
-![Componentes do sistema computacional](imgs/10-42-48.png)
+![Componentes do sistema computacional](img/10-42-48.png)
 
 Podemos explorar os sistemas operacionais de dois pontos de vista:
 
@@ -84,7 +84,7 @@ Um sistema operacional também pode ser visto como um programa de controle, isto
 
 Um computador moderno de propósito geral consiste de uma ou mais CPUs e uma quantidade de controladores de dispositivos conectados por meio de um barramento comum, que provê acesso à memória compartilhada. A CPU e os dispositivos podem funcionar em paralelo, competindo por ciclos de memória, e para assegurar o acesso ordenado à memória, o controlador da memória sincroniza o acesso à ela.
 
-![Organização de um sistema computacional moderno](imgs/11-35-15.png)
+![Organização de um sistema computacional moderno](img/11-35-15.png)
 
 Para que o computador comece a funcionar, após ser ligado ou reiniciado, é necessário que ele tenha um programa inicial para rodar, chamado de **bootstrap program**, que tende a ser simples. Geralmente tal programa é armazenado no hardware do computador na memória de leitura (ROM) ou na memória programável e apagável elétrica (EEPROM) e é conhecido por **firmware**. Ele inicializa todos os aspectos do sistema, desde os registradores da CPU, até os controladores de dispositivos e conteúdo da memória. O programa de bootstrap deve saber como carregar o sistema operacional e executá-lo, localizando o kernel do sistema operacional e carregando-o na memória.
 
@@ -94,7 +94,7 @@ A ocorrência de um evento geralmente é sinalizada por meio de uma interrupçã
 
 Quando a CPU é interrompida, ela para imediatamente o que estiver executando e transfere a execução para uma localização fixada, que geralmente contém o endereço de início da rotina a ser executada. A rotina de interrupção é executada e, após sua finalização, a CPU continua a computação que foi interrompida.
 
-![Linha do tempo de interrupções](imgs/08-41-30.png)
+![Linha do tempo de interrupções](img/08-41-30.png)
 
 Como existe uma quantidade predeterminada de interrupções possíveis, uma tabela de ponteiros para rotinas de interrupção pode ser usada para aumentar a velocidade de execução. Geralmente essa tabela é armazenada em endereços baixos de memória, onde são guardados os endereços para as rotinas de interrupção de diversos dispositivos. Esse array, ou **vetor de interrupções**, é indexado por um número único por dispositivo, fornecendo o endereço da rotina a ser executada.
 
