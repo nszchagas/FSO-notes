@@ -1,3 +1,4 @@
 .vscode/
 books/
 slides/
+*.out

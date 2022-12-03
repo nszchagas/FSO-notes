@@ -11,9 +11,9 @@ pip install mkdocs
 pip install mkdocs-material
 ```
 
-E então, rodar o comando para iniciar o servidor. 
+E então, rodar o comando para iniciar o servidor.
 
-```sh 
+```sh
 mkdocs serve
 ```
 
