@@ -2,21 +2,19 @@ site_name: FSO - notes
 copyright: 2022 Nicolas Souza
 
 theme:
-  name: alabaster
+  logo: _static/dino.png
+  name: material
   favicon: _static/dino.png
-  # palette:
-  #   scheme: slate
-  #   primary: blue gray
-  #   accent: gray
+  palette:
+    scheme: slate
+    primary: grey
+    accent: blue grey
 
 nav:
   - About: index.md
   - Chapter 1: summaries/ch1.md
   - Chapter 2: summaries/ch2.md
-  # - Chapter 3: summaries/ch3.md
+  - Chapter 3: summaries/ch3.md
   # - Chapter 4: summaries/ch4.md
 
-  # - Exercises: misc/exercises.md
-
-extra:
-  logo: _static/dino.png
+  - Exercises: misc/exercises.md
