@@ -2,6 +2,21 @@
 
 Repositório dedicado para as notas de aula e trabalhos da disciplina: Fundamentos de Sistemas Operacionais da UnB.
 
+## Rodando a documentação localmente
+
+Partindo da premissa que a máquina já possua Python, é necessário instalar o mkdocs e o mkdocs-material (tema), por meio dos seguintes comandos:  
+
+```sh
+pip install mkdocs
+pip install mkdocs-material
+```
+
+E então, rodar o comando para iniciar o servidor. 
+
+```sh 
+mkdocs serve
+```
+
 ## Plano de Ensino
 
 Haverá três avaliações:
