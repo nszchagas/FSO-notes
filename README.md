@@ -1,3 +1,5 @@
+[![wakatime](https://wakatime.com/badge/github/nszchagas/FSO-notes.svg)](https://wakatime.com/badge/github/nszchagas/FSO-notes)
+
 # FSO-notes
 
 Repositório dedicado para as notas de aula e trabalhos da disciplina: Fundamentos de Sistemas Operacionais da UnB.
