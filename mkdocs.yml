@@ -2,13 +2,25 @@ site_name: FSO - notes
 copyright: 2022 Nicolas Souza
 
 theme:
-  logo: _static/dino.png
   name: material
+  logo: _static/dino.png
   favicon: _static/dino.png
+  features:
+    - content.code.annotate
   palette:
-    scheme: slate
-    primary: grey
-    accent: blue grey
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      toggle:
+        icon: material/brightness-7
+        name: Dark mode
+
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      toggle:
+        icon: material/brightness-4
+        name: Light mode
 
 markdown_extensions:
   - attr_list
