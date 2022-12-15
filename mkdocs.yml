@@ -35,9 +35,9 @@ markdown_extensions:
 
 nav:
   - About: index.md
-  - Chapter 1: summaries/ch1.md
-  - Chapter 2: summaries/ch2.md
+  - Overview: summaries/ch1.md
+  - Operational Systems: summaries/ch2.md
   - Processes: summaries/ch3.md
-  # - Chapter 4: summaries/ch4.md
+  - Threads: summaries/ch4.md
 
   - Exercises: misc/exercises.md
