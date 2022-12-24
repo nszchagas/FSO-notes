@@ -112,3 +112,83 @@ Figure 5: Two-level model. Source: [1]
 </div>
 </center>
 
+## Thread Libraries
+
+A thread library provides the programmer an API to create and manage threads.
+
+There are two primary ways of implementing a thread library, it can be entirely provided in the user level, with no kernel support, or it can be implemented at the kernel level.
+
+Thread libraries provided at user level implicates in code and data structure for the library existing in user space, so that invoking a function in this library results in a local function call in user space and **not a system call**.
+
+Kernel-level libraries are supported directly by the operational system, so code and data structure for the library exist in kernel space and invoking a function in the library API **usually results in a system call** to the kernel.
+
+The three main libraries in use today are **POSIX Pthreads, Windows and Java**. **Windows library is a kernel-level** available on Windows systems, **Pthreads may be provided at user or kernel level**, and **Java's** thread library API is **generally implemented using a thread library available on the host system** in which the JVM is running.
+
+For POSIX and Windows any **global data**, declared outside of any function, is shared among all threads in the same process. For Java doesn't have the notion of global data, shared access to data must be explicitly arranged between threads. As for **local data**, it's is usually stored in the stack and since each thread has its own stack, each thread has its copy of local data.
+
+Threads can be created by two general strategies: synchronous and asynchronous threading.
+
+- **Synchronous threading**: the parent thread creates one or more children and then **must wait** for all of its children to terminate before resuming its execution (**fork-join** strategy). The threads created execute concurrently, but the parent cannot continue until this work is finished.
+- **Asynchronous threading**: once the parent creates a thread it continues its execution, so that **parent and child execute concurrently**.
+
+### Pthreads
+
+It's a POSIX standard defining an API for thread creation and synchronization, it's a **specification**, but **not an implementation**. Operating system designers implement this specification as needed, Linux, MAC OS X and Solaris are some of the UNIX-type systems that implement Pthreads.
+
+```c
+#include <pthread.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+int sum;                   // Data shared by the threads.
+void *runner(void *param); // Pointer to the function to be shared by the threads.
+
+int main(int argc, char *argv[])
+{
+    pthread_t tid;       // Thread identifier.
+    pthread_attr_t attr; // Set of thread attributes.
+
+    
+    if (argc != 2) 
+    {
+        fprintf(stderr, "Usage: a.out <integer value>\n");
+        return -1;
+    }
+
+    if (atoi(argv[1]) < 0)
+    {
+        fprintf(stderr, "%d must be >=0 \n", atoi(argv[1]));
+        return -1;
+    }
+
+    pthread_attr_init(&attr); // Initialize thread attributes.
+    
+    /* Creates thread identified by tid (passed by reference) to run the 
+        runner function with param = argv[1] (passed by reference) */
+    pthread_create(&tid, &attr, runner, argv[1]);
+
+    /* The calling thread waits for completion of child thread
+            The return status is not stored (NULL param); */
+    pthread_join(tid, NULL);
+
+    printf("sum = %d\n", sum);
+
+    return 0;
+}
+
+// This function is controlled by the thread
+void *runner(void *param)
+{
+    sum = 0;
+    int i, upper = atoi(param);
+    for (i = 1; i <= upper; i++)
+        sum += i;
+    pthread_exit(0);
+}
+```
+
+To declare multiple threads, one can declare a global variable defining the number of threads and repeat the steps above for all the threads.
+
+```c
+    #define 
+```
