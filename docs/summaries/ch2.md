@@ -1,11 +1,13 @@
-# Chapter 2
+# Operating Systems
 
 ## Operating system services
 
 - OS provide an environment for execution of programs and services to programs and users.
 - The specif services vary among different OS, but we can identify common classes, as figure 1 shows.
 
+<center>
 ![](assets/ch2/19-48-06.png)
+</center>
 
 <div style="text-align: center">
 Figure 1: Services provided by OS. Source: [1]
@@ -73,7 +75,9 @@ This second approach enables the user to add custom commands without the need to
 - The use of APIs offers some benefits, among which is the potability of programs between Operational Systems.
 - For most programming languages, the run-time support system provides a **system call interface** that serves as a the link to system calls made available by the OS, as illustrated by Figure 2 below.
 
+<center>
 ![](assets/ch2/20-58-12.png)
+</center>
 
 <div style="text-align: center">
 Figure 2: Handling of the open() system call. Source: [1]
@@ -89,7 +93,9 @@ There are three general methods used to pass parameters to the OS:
 - Parameters stored in a **block** or **table** in memory, and address of block passed as a parameter in a register (approach taken by Linux and Solaris), as illustrated by Figure 3.
 - Parameters **pushed** onto the **stack** by the program and **popped** off the stack by the OS.
 
+<center>
 ![](assets/ch2/21-40-09.png)
+</center>
 <div style="text-align: center">
 Figure 3: System call parameter passing. Source: [1]
 </div>
@@ -109,20 +115,29 @@ System calls can be grouped in six categories, and the types of system calls for
 Table 1: Types of system calls per category. Source: [1]
 </div>
 
+<center>
 ![](assets/ch2/08-53-17.png)
+</center>
 <div style="text-align: center">
 Figure 4: Windows and UNIX system calls. Source: [1]
 </div>
 
+<center>
 ![](assets/ch2/08-55-58.png)
+</center>
 <div style="text-align: center">
 Figure 5: Types of system calls per category. Source: [1]
 </div>
+
 ## Examples
 
+<center>
 ![](assets/ch2/08-59-16.png)
+</center>
 
+<center>
 ![](assets/ch2/08-59-55.png)
+</center>
 
 ## System Programs
 
