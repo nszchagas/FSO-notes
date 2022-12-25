@@ -8,7 +8,9 @@ A batch system executes **jobs**, whereas a time-shared system has **user progra
 
 A process is a program in execution, and its more than the program code (**text section**), as it includes the current activity (**program counter**) and the content of the processor's registers. It also includes temporary data (stored in the **stack**), global variables (**data section**) and may include a dynamically allocated memory, the **heap**. This structure is illustrated in Figure 1.
 
+<center>
 ![Figure 1: The process structure in memory. Source: [1]](assets/ch3/2022-12-03-09-38-59.png)
+</center>
 
 <div style="text-align: center">
 <p>Figure 1: The process structure in memory. Source: [1]</p>
@@ -32,7 +34,10 @@ During execution, a process changes its **state**, which is defined partly by it
 
 > :material-information-outline: Only **one** process can be running at any processor at any time, but many processes may be ready and waiting. The Figure 2 represents the relationship between the different process states.
 
+<center>
 ![Figure 2: Diagram of process state.](assets/ch3/2022-12-03-10-19-49.png)
+</center>
+
 <div style="text-align: center">
 <p>
 Figure 2: Diagram of process state. Source: [1]
@@ -41,14 +46,20 @@ Figure 2: Diagram of process state. Source: [1]
 
 Each process is represented in the operating system by a **process control block (PCB)**, also called **task control block**, represented in the Figure 3. It contains information about the process state, the next instruction to be executed for this process (program counter), the state of the CPU registers (Figure 4), CPU-scheduling information about priority, scheduling parameters and memory management information, such as base and limit registers and page tables, accounting information and I/O status information.
 
+<center>
 ![Figure 3: The PCB structure](assets/ch3/2022-12-03-09-59-37.png)
+</center>
+
 <div style="text-align: center">
 <p>
 Figure 3: The PCB structure. Source: [1]
 </p>
 </div>
 
+<center>
 ![Figure 4: CPU switch between processes.](assets/ch3/2022-12-03-10-29-44.png)
+</center>
+
 <div style="text-align: center">
 <p>
 Figure 4: CPU switch between processes. Source: [1]
@@ -63,7 +74,10 @@ The objective of multiprogramming is having some process running at all times, t
 
 When a process enter the system, it joins the **job queue**, those which are ready and waiting to execute are kept in a list called **ready queue**, which is usually a linked list containing the PCB of each process and a pointer to the next process in line. The **device queue** order processes waiting for a particular I/O, and each device has its own device queue (Figure 5).
 
+<center>
 ![Figure 5: Diagram of queueing of processes](assets/ch3/2022-12-03-10-36-34.png)
+</center>
+
 <div style="text-align: center">
 <p>
 Figure 5: Diagram of queueing of processes. Source: [1]
@@ -76,7 +90,9 @@ In general, most processes are either **I/O bound** or **CPU bound**, the first 
 
 Some operating systems have an intermediate level of scheduling, the **medium-term scheduler** (Figure 6), that removes processes from memory and reinserts them after a while (**swapping**). Swapping may be necessary according to lack of resources.
 
+<center>
 ![Figure 6: Addition of medium-term scheduler in the queueing diagram.](assets/ch3/2022-12-03-15-19-32.png)
+</center>
 
 <div style="text-align: center">
 <p>
@@ -92,7 +108,9 @@ When an interrupt occurs, the system needs to save the **context** of the proces
 
 During its execution, a (parent) process may create several child processes, which can also create child processes, creating a **tree** (Figure 7) of processes. In most operating systems, processes are identified by a unique **process identifier (pid)**, usually an integer number.
 
-![Figure 7: a tree of processes on a typical Linux system](assets/ch3_15_49_23.png)
+<center>
+![Figure 7: a tree of processes on a typical Linux system](assets/ch3/ch3_15_49_23.png)
+</center>
 
 <div style="text-align: center">
 <p>
@@ -173,7 +191,9 @@ Code snippet 1: Demonstration of the fork system call. Source: [1]
 </p>
 </div>
 
-![Figure 8: Output of the code snippet 1.](assets/ch3_16_23_31.png)
+<center>
+![Figure 8: Output of the code snippet 1.](assets/ch3/ch3_16_23_31.png)
+</center>
 
 <div style="text-align: center">
 <p>
@@ -181,7 +201,10 @@ Figure 8: Output of the code snippet. Source: author.
 </p>
 </div>
 
-![Figure 9: Process creation using the fork system call.](assets/ch3_17_05_07.png)
+<center>
+![Figure 9: Process creation using the fork system call.](assets/ch3/ch3_17_05_07.png)
+</center>
+
 <div style="text-align: center">
 <p>
 Figure 9: Process creation using the fork system call. Source: [1]
@@ -206,7 +229,9 @@ Processes executing concurrently may be either independent of cooperating proces
 
 Cooperating processes require an **interprocess communication (IPC)** mechanism, and there are two fundamental models of IPC: **shared memory** and **message passing**. In the first, a region of memory is shared between processes and they can share information by reading and writing in this region. In the later, communication takes place by means of messages exchanged between the cooperating processes. Most systems implement both models, message passing is preferred when smaller amounts of data are shared, but shared memory can be faster than message passing.
 
-![Figure 10: Interprocess communication models: message passing (a) and shared memory (b).](assets/ch3_17_48_39.png)
+<center>
+![Figure 10: Interprocess communication models: message passing (a) and shared memory (b).](assets/ch3/ch3_17_48_39.png)
+</center>
 
 <div style="text-align: center">
 <p>
@@ -238,7 +263,6 @@ A communication link, in this scheme, has the following properties:
 - A link is established automatically between every pair of processes, who need to know only each other's identity to communicate.
 - A link associates exactly two processes.
 - Between each pair of processes exists exactly one link.
-
 
 ## References
 
