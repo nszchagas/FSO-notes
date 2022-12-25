@@ -239,7 +239,6 @@ A communication link, in this scheme, has the following properties:
 - A link associates exactly two processes.
 - Between each pair of processes exists exactly one link.
 
-## Communication in Client-Server Systems
 
 ## References
 
