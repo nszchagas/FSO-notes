@@ -1,35 +1,36 @@
 # Introdução
 
-> Linux
->
-> - O linux é apenas o **kernel**, em torno do qual orbitam as distribuições.
-> - É um sistema velox e possui comunidade ampla e atuante.
-> - Segurança satisfatória.
+Linux
 
-> MINIX
->
-> - SO criado pelo Tanenbaum com fins didáticos.
-> - O Linux foi desenvolvido com base no MINIX. A primeira compilação do Linux foi em um MINIX do Linus Torvalds.
-> - Poucas opções de plataformas: x86 e arm.
+- O linux é apenas o **kernel**, em torno do qual orbitam as distribuições.
+- É um sistema veloz e possui comunidade ampla e atuante.
+- Segurança satisfatória.
 
-> FreeBSD
->
-> - Não é apenas um kernel, mas um sistema completo.
-> - UNIX.
-> - Derivado do Linux.
-> - Poucas opções de plataformas: x86, amd64 e arm.
+MINIX
 
-> OpenBSD
->
-> - Foco em segurança em corretude.
-> - Red Team Field Manual.
-> - Provedor de ferramentas importantes para o mundo *nix: OpenSSH, OpenNTPD, OpenSMPD, realyd, spamd, httpd, tmux etc.
-> - Suporte a ampla gama de arquiteturas.
-> NetBSD
->
-> - Amplo suporte a hardware.
-> - Propôs gerenciador de pacotes (pckgsrc) que serviu de inspiração aos gerenciadores de pacotes dos outros BSDs e Linux.
-> - Uso de linguagens não usuais no kernel (LUA).
+- SO criado pelo Tanenbaum com fins didáticos.
+- O Linux foi desenvolvido com base no MINIX. A primeira compilação do Linux foi em um MINIX do Linus Torvalds.
+
+- Poucas opções de plataformas: x86 e arm.
+
+FreeBSD
+
+- Não é apenas um kernel, mas um sistema completo.
+- UNIX.
+- Derivado do Linux.
+- Poucas opções de plataformas: x86, amd64 e arm.
+
+ OpenBSD
+
+- Foco em segurança em corretude.
+- Red Team Field Manual.
+- Provedor de ferramentas importantes para o mundo *nix: OpenSSH, OpenNTPD, OpenSMPD, realyd, spamd, httpd, tmux etc.
+- Suporte a ampla gama de arquiteturas.
+ NetBSD
+
+- Amplo suporte a hardware.
+- Propôs gerenciador de pacotes (pckgsrc) que serviu de inspiração aos gerenciadores de pacotes dos outros BSDs e Linux.
+- Uso de linguagens não usuais no kernel (LUA).
 
 ## O que é um SO?
 
@@ -56,7 +57,14 @@ Um sistema computacional pode ser dividido em quatro componentes:
 - Usuários
   - Pessoas, máquinas ou outros computadores.
 
+<center>
 ![Componentes do sistema computacional](assets/ch1/10-42-48.png)
+</center>
+<div style="text-align: center">
+<p>
+ Figure: Componentes do sistema computacional. Source: [1]
+</p>
+</div>
 
 Podemos explorar os sistemas operacionais de dois pontos de vista:
 
@@ -84,7 +92,14 @@ Um sistema operacional também pode ser visto como um programa de controle, isto
 
 Um computador moderno de propósito geral consiste de uma ou mais CPUs e uma quantidade de controladores de dispositivos conectados por meio de um barramento comum, que provê acesso à memória compartilhada. A CPU e os dispositivos podem funcionar em paralelo, competindo por ciclos de memória, e para assegurar o acesso ordenado à memória, o controlador da memória sincroniza o acesso à ela.
 
+<center>
 ![Organização de um sistema computacional moderno](assets/ch1/11-35-15.png)
+</center>
+<div style="text-align: center">
+<p>
+ Figure: Organização de um sistema computacional moderno. Source: [1]
+</p>
+</div>
 
 Para que o computador comece a funcionar, após ser ligado ou reiniciado, é necessário que ele tenha um programa inicial para rodar, chamado de **bootstrap program**, que tende a ser simples. Geralmente tal programa é armazenado no hardware do computador na memória de leitura (ROM) ou na memória programável e apagável elétrica (EEPROM) e é conhecido por **firmware**. Ele inicializa todos os aspectos do sistema, desde os registradores da CPU, até os controladores de dispositivos e conteúdo da memória. O programa de bootstrap deve saber como carregar o sistema operacional e executá-lo, localizando o kernel do sistema operacional e carregando-o na memória.
 
@@ -94,7 +109,14 @@ A ocorrência de um evento geralmente é sinalizada por meio de uma interrupçã
 
 Quando a CPU é interrompida, ela para imediatamente o que estiver executando e transfere a execução para uma localização fixada, que geralmente contém o endereço de início da rotina a ser executada. A rotina de interrupção é executada e, após sua finalização, a CPU continua a computação que foi interrompida.
 
+<center>
 ![Linha do tempo de interrupções](assets/ch1/08-41-30.png)
+</center>
+<div style="text-align: center">
+<p>
+ Figure: Linha do tempo de interrupções. Source: [1]
+</p>
+</div>
 
 Como existe uma quantidade predeterminada de interrupções possíveis, uma tabela de ponteiros para rotinas de interrupção pode ser usada para aumentar a velocidade de execução. Geralmente essa tabela é armazenada em endereços baixos de memória, onde são guardados os endereços para as rotinas de interrupção de diversos dispositivos. Esse array, ou **vetor de interrupções**, é indexado por um número único por dispositivo, fornecendo o endereço da rotina a ser executada.
 
@@ -124,8 +146,6 @@ O endereço de retorno após a interrupção também deve ser armazenado, geralm
 - Separate segments of code determine what action should be taken for each type of interrupt
 
 ## I/O Structure
-
-### [Exercises](../misc/exercises.md#chapter-1)
 
 ### Referência Bibliográfica
 

@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 int sum;                   // Data shared by the threads.
 void *runner(void *param); // Pointer to the function to be shared by the threads.
 

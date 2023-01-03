@@ -7,6 +7,7 @@ A thread is a basic unit of CPU utilization, and it **comprises** a thread ID, a
 A **heavyweight** process is the one that has only one thread of control. A process that has more than one thread can perform more than one task at a time.
 
 <center>
+
 ![](assets/ch4/ch4_20_15_54.png)
 <div style="text-align: center">
 <p>
@@ -78,6 +79,7 @@ In this model (Figure 3), **each user thread** is mapped to **a kernel thread**.
 > :material-information-outline: Linux and Windows operating systems implement the one-to-one model.
 
 <center>
+
 ![](assets/ch4/ch4_21_11_24.png)
 <div style="text-align: center">
 <p>
@@ -91,6 +93,7 @@ Figure 3: One-to-One model. Source: [1]
 This model (Figure 4) multiplexes **many user-level threads** to a smaller or equal number of **kernel threads**, and this number may be specific to either a particular application or a particular machine. It suffers from neither of the previously mentioned shortcoming, developers can create as many user threads as necessary and the corresponding kernel threads can run in parallel on a multiprocessor. When a thread performs a blocking system call, the kernel can schedule another thread for execution.
 
 <center>
+
 ![](assets/ch4/ch4_21_17_46.png)
 <div style="text-align: center">
 <p>
@@ -104,6 +107,7 @@ Figure 4: Many-to-Many model. Source: [1]
 This model (Figure 5) is a variation of the many-to-many model, in which user threads are still multiplexed to a smaller or equal number of kernel threads, but also can be mapped to a single kernel thread.
 
 <center>
+
 ![](assets/ch4/ch4_21_24_49.png)
 <div style="text-align: center">
 <p>
@@ -344,4 +348,3 @@ The communication between kernel and user-thread library can be done by a **sche
 ## References
 
 [1] SILBERSCHATZ A., GALVIN P., GAGNE G. Operating System Concepts, 9th Edition.
-
