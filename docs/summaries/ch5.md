@@ -294,7 +294,55 @@ Various synchronization problems, such as the bounded-buffer, readers-writers an
 
 ### The Bounded-Buffer Problem
 
+In this problem, producer and consumer processes share the following data structures:
+
+```c
+    int n;
+    semaphore mutex = 1;
+    semaphore empty = n;
+    semaphore full = 0;
+
+    void producer_process(){
+        do {
+            // Produce an iten in next_produced.
+
+            wait(empty);
+            wait(mutex);
+
+            // Add next_produced to buffer.
+
+            signal(mutex);
+            signal(full);
+
+        } while (true);
+    }
+
+    void consumer_process(){
+        do {
+            
+            wait(full);
+            wait(mutex);
+
+            // Remove and item from buffer to next_consumed.
+
+            signal(mutex);
+            signal(empty);
+
+            // Consume the item in next_consumed.
+
+        } while (true);
+    }
+```
+
+We assume the pool consists of n buffers capable of holding one item. The mutex semaphore manages access to the buffer pool. The empty and full semaphores count the number of empty and full buffers.
+
+In this code, we can say that the producer is producing full buffers for the consumer or that the consumer is producing empty buffers for the producer.
+
 ### The Readers-Writers Problem
+
+Processes that want only to read data are called **readers** and the ones that want to read and write are called **writers**. More than one reader can access data simultaneously, but only one writer can access data at a time.
+
+This problem has some variations, the first version requires that no reader be kept waiting unless a writer has already obtained permission to use the shared object.
 
 ### The Dining-Philosophers Problem
 

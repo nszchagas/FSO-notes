@@ -49,3 +49,7 @@ nav:
   - Processes: summaries/ch3.md
   - Threads: summaries/ch4.md
   - Process Synchronization: summaries/ch5.md
+  - CPU Scheduling: summaries/ch6.md
+  - Main Memory: summaries/ch7.md
+  - Virtual Memory: summaries/ch8.md
+  - Mass-Storage Structure: summaries/ch9.md
