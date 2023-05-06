@@ -1,25 +1,26 @@
-site_name: FSO - notes
+site_name: Fundamentos de Sistemas Operacionais
 copyright: 2022 Nicolas Souza
 repo_name: FSO-notes
 repo_url: https://github.com/nszchagas/FSO-notes
 
 theme:
   name: material
-  logo: _static/dino.png
-  favicon: _static/dino.png
+  logo: _static/icon.png
   features:
     - content.code.annotate
+    - content.code.copy
+  favicon: _static/icon.png
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: teal
+      primary: blue grey
       toggle:
         icon: material/brightness-7
         name: Dark mode
 
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: teal
+      primary: deep purple
       toggle:
         icon: material/brightness-4
         name: Light mode
@@ -30,7 +31,8 @@ markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite
-  - pymdownx.snippets
+  - pymdownx.snippets:
+      base_path: ["codes"]
   - pymdownx.superfences
   - attr_list
   - pymdownx.emoji:
@@ -44,12 +46,16 @@ extra_javascript:
 
 nav:
   - About: index.md
-  - Overview: summaries/ch1.md
-  - Operational Systems: summaries/ch2.md
-  - Processes: summaries/ch3.md
-  - Threads: summaries/ch4.md
-  - Process Synchronization: summaries/ch5.md
-  - CPU Scheduling: summaries/ch6.md
-  - Main Memory: summaries/ch7.md
-  - Virtual Memory: summaries/ch8.md
-  - Mass-Storage Structure: summaries/ch9.md
+  - SILBERSCHATZ:
+      - Chapter 1: summaries/ch1.md
+      - Chapter 2: summaries/ch2.md
+      - Chapter 3: summaries/ch3.md
+      - Chapter 4: summaries/ch4.md
+      - Chapter 5: summaries/ch5.md
+      - Chapter 9: summaries/ch9.md
+  - TANENBAUM:
+      - Módulo 1: resumos/mod1.md
+      - Módulo 2: resumos/mod2.md
+      - Módulo 3: resumos/mod3.md
+      - Módulo 4: resumos/mod4.md
+      - Módulo 5: resumos/mod5.md
