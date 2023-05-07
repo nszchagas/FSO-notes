@@ -1,0 +1,7 @@
+{
+  "pasteImage.basePath": "${currentFileDir}",
+  "pasteImage.path": "${currentFileDir}/assets/${currentFileNameWithoutExt}",
+  "pasteImage.defaultName": "mmss",
+  "pasteImage.insertPattern": "${imageSyntaxPrefix}${imageFilePath}${imageSyntaxSuffix}",
+  "markdownlint.config": { "MD033": false, "MD045": false }
+}
