@@ -1,0 +1,30 @@
+#!/bin/bash
+
+test_file=roundrobin.c
+
+for tc in test_cases/rr_tc_in*; do
+
+    tc_id=${tc//[a-z_\/]/}
+    input_file=$tc
+    output_file=${tc/in/out}
+    output_execution="out$tc_id"
+    printf ">> Test Case #$tc_id: "
+    # printf "Input:\n"
+    # cat $input_file
+
+    # printf "\nExpected output:\n"
+    # cat $output_file
+
+    gcc $test_file && ./a.out <$input_file >$output_execution
+    # printf "\nOutput:\n"
+    # cat $output_execution
+    difs=$(diff -u $output_execution $output_file --color)
+    if [[ $difs ]]; then
+        printf "\n\033[0;31mDiferences between files:\n \033[0m"
+        diff -B --strip-trailing-cr $output_file $output_execution --color
+    else
+        echo -e "\033[0;32mOk\033[0m"
+    fi
+
+    rm $output_execution a.out
+done
