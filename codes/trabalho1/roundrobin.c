@@ -47,7 +47,7 @@ int main()
 
     // Reading input
     scanf("%d", &qt_processes);
-    scanf("%d", &quantum);
+    scanf("%ld", &quantum);
 
     // Allocating memory for process array.
     processes = malloc(qt_processes * sizeof(process));
@@ -73,25 +73,32 @@ int main()
     // While there are processes to run, circle through processes.
     while (qt_finished != qt_processes)
     {
+        long int iteration_time = quantum;
         for (int i = 0; i < qt_processes; i++)
         {
-            if (processes[i].remaining_time > 0)
+
+            if (processes[i].remaining_time == 0)
+                break;
+            iteration_time = quantum;
+            if (processes[i].remaining_time > iteration_time)
             {
-                if (processes[i].remaining_time > quantum)
-                {
-                    processes[i].remaining_time -= quantum;
-                    time += quantum;
-                }
-                else
-                {
-                    time += processes[i].remaining_time;
-                    processes[i].remaining_time = 0;
-                    printf("%ld (%ld)\n", processes[i].pid, time);
-                    qt_finished++;
-                    if (qt_finished == qt_processes)
-                        break;
-                }
+                processes[i].remaining_time -= iteration_time;
+                time += iteration_time;
+                iteration_time = quantum;
             }
+            else
+            {
+                time += processes[i].remaining_time;
+                iteration_time -= processes[i].remaining_time;
+
+                processes[i].remaining_time = 0;
+                printf("%ld (%ld)\n", processes[i].pid, time);
+                qt_finished++;
+                if (qt_finished == qt_processes)
+                    break;
+            }
+            // printf("remaining: %d %ld\n", iteration_time, iteration_time);
+            // print_process(processes[i]);
         }
     }
 
