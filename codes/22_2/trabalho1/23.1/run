@@ -1,8 +1,0 @@
-#!/bin/bash
-
-gcc trabalho1.c
-
-printf "Input:\n$(cat input)\nOutput:\n"
-
-
-./a.out <input
