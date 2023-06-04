@@ -85,8 +85,6 @@ O **deadlock** é definido, formalmente, da seguinte maneira:
 
 ## Modelagem de Deadlock
 
-
-
 ## Referências
 
 [1] TANENBAUM, A. S. Sistemas. Operacionais Modernos. 4ª ed. Prentice Hall, 2016.

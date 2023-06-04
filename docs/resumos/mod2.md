@@ -165,6 +165,14 @@ Algoritmos de Escalonamento visam dividir a utilização do processo entre proce
 
 #### Round-Robin
 
+Esse algoritmo permite que cada processo utilize o processador por um intervalo de tempo pré-definido, denominado *quantum*. Quando o *quantum* se esgota, o processador é dado a outro processo, em ordem de chegada.
+
+```c title="round-robin.c" linenums="1"
+--8<--
+trabalho1/roundrobin.c
+--8<--
+```
+
 #### Prioridades
 
 #### Shortest Job First
