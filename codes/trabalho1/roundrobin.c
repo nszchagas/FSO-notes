@@ -69,37 +69,39 @@ int main()
     // Running processor
 
     int qt_finished = 0;
+    int i = 0;
     long int time = 0;
+    long int iteration_time = quantum;
     // While there are processes to run, circle through processes.
     while (qt_finished != qt_processes)
     {
-        long int iteration_time = quantum;
-        for (int i = 0; i < qt_processes; i++)
+        iteration_time = quantum;
+
+        if (processes[i].remaining_time > 0)
         {
-
-            if (processes[i].remaining_time == 0)
-                break;
-            iteration_time = quantum;
-            if (processes[i].remaining_time > iteration_time)
+            do
             {
-                processes[i].remaining_time -= iteration_time;
-                time += iteration_time;
-                iteration_time = quantum;
-            }
-            else
-            {
-                time += processes[i].remaining_time;
-                iteration_time -= processes[i].remaining_time;
-
-                processes[i].remaining_time = 0;
-                printf("%ld (%ld)\n", processes[i].pid, time);
-                qt_finished++;
-                if (qt_finished == qt_processes)
-                    break;
-            }
-            // printf("remaining: %d %ld\n", iteration_time, iteration_time);
-            // print_process(processes[i]);
+                if (processes[i].remaining_time == 0)
+                {
+                    iteration_time = quantum;
+                }
+                else if (processes[i].remaining_time > iteration_time)
+                {
+                    processes[i].remaining_time -= iteration_time;
+                    time += iteration_time;
+                    iteration_time = quantum;
+                }
+                else
+                {
+                    time += processes[i].remaining_time;
+                    iteration_time -= processes[i].remaining_time;
+                    processes[i].remaining_time = 0;
+                    printf("%ld (%ld)\n", processes[i].pid, time);
+                    qt_finished++;
+                }
+            } while (iteration_time != 0 && iteration_time != quantum);
         }
+        i = (i + 1) % qt_processes;
     }
 
     return 0;
