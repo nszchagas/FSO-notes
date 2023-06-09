@@ -75,34 +75,22 @@ int main()
     // While there are processes to run, circle through processes.
     while (qt_finished != qt_processes)
     {
-        iteration_time = quantum;
-
-        if (processes[i].remaining_time > 0)
+        if (processes[i].remaining_time != 0)
         {
-            do
+            if (processes[i].remaining_time > iteration_time)
             {
-                if (processes[i].remaining_time == 0)
-                {
-                    iteration_time = quantum;
-                }
-                else if (processes[i].remaining_time > iteration_time)
-                {
-                    processes[i].remaining_time -= iteration_time;
-                    time += iteration_time;
-                    iteration_time = quantum;
-                }
-                else
-                {
-                    time += processes[i].remaining_time;
-                    iteration_time -= processes[i].remaining_time;
-                    processes[i].remaining_time = 0;
-                    printf("%ld (%ld)\n", processes[i].pid, time);
-                    qt_finished++;
-                }
-            } while (iteration_time != 0 && iteration_time != quantum);
+                processes[i].remaining_time -= iteration_time;
+                time += iteration_time;
+            }
+            else
+            {
+                time += processes[i].remaining_time;
+                printf("%ld (%ld)\n", processes[i].pid, time);
+                processes[i].remaining_time = 0;
+                qt_finished++;
+            }
         }
         i = (i + 1) % qt_processes;
     }
-
     return 0;
 }
