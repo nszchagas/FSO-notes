@@ -80,16 +80,20 @@ int main()
     long int time = 0;
     while (qt_processes > 0)
     {
-        for (int i = 0; i < qt_processes; i++, time += quantum)
+        for (int i = 0; i < qt_processes; i++)
         {
             if (p[i].remaining_time > quantum)
+            {
+                time += quantum;
                 p[i].remaining_time -= quantum;
+            }
             else
             {
-                printf("%ld (%ld)\n", p[i].pid, time + p[i].remaining_time);
+                time += p[i].remaining_time;
+                printf("%ld (%ld)\n", p[i].pid, time);
                 remove_index(p, i, qt_processes);
                 qt_processes--;
-                i--;
+                i -= 1;
             }
             // print_processes(p, qt_processes);
         }
