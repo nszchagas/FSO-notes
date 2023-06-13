@@ -35,25 +35,36 @@ typedef struct process
 
 } process;
 
+void remove_index(process *p, int start, int size)
+{
+    for (int i = start; i < size; i++)
+        p[i] = p[i + 1];
+}
+
 void print_process(process p)
 {
-    printf("{pid: %ld, remaining_time: %ld}\n", p.pid, p.remaining_time);
+    printf("%ld(-%ld) ", p.pid, p.remaining_time);
+}
+void print_processes(process *p, int size)
+{
+    for (int i = 0; i < size; i++)
+        print_process(p[i]);
+    printf("\n");
 }
 int main()
 {
     int qt_processes;
     long int quantum;
-    process *processes;
+    process *p;
 
     // Reading input
     scanf("%d", &qt_processes);
     scanf("%ld", &quantum);
 
     // Allocating memory for process array.
-    processes = malloc(qt_processes * sizeof(process));
+    p = malloc(qt_processes * sizeof(process));
 
     // Reading processes
-
     long int pid;
     long int remaining_time;
     for (int i = 0; i < qt_processes; i++)
@@ -62,35 +73,26 @@ int main()
         // Converting from seconds to milisseconds
         remaining_time *= 1000;
 
-        processes[i].pid = pid;
-        processes[i].remaining_time = remaining_time;
+        p[i].pid = pid;
+        p[i].remaining_time = remaining_time;
     }
 
-    // Running processor
-
-    int qt_finished = 0;
-    int i = 0;
     long int time = 0;
-    long int iteration_time = quantum;
-    // While there are processes to run, circle through processes.
-    while (qt_finished != qt_processes)
+    while (qt_processes > 0)
     {
-        if (processes[i].remaining_time != 0)
+        for (int i = 0; i < qt_processes; i++, time += quantum)
         {
-            if (processes[i].remaining_time > iteration_time)
-            {
-                processes[i].remaining_time -= iteration_time;
-                time += iteration_time;
-            }
+            if (p[i].remaining_time > quantum)
+                p[i].remaining_time -= quantum;
             else
             {
-                time += processes[i].remaining_time;
-                printf("%ld (%ld)\n", processes[i].pid, time);
-                processes[i].remaining_time = 0;
-                qt_finished++;
+                printf("%ld (%ld)\n", p[i].pid, time + p[i].remaining_time);
+                remove_index(p, i, qt_processes);
+                qt_processes--;
+                i--;
             }
+            // print_processes(p, qt_processes);
         }
-        i = (i + 1) % qt_processes;
     }
     return 0;
 }
