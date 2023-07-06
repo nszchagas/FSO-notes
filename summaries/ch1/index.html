@@ -1,0 +1,904 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../ch2/">
+      
+      <link rel="icon" href="../../_static/icon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.18">
+    
+    
+      
+        <title>Chapter 1 - Fundamentos de Sistemas Operacionais</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.26e3688c.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ecc896b0.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introducao" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Fundamentos de Sistemas Operacionais" class="md-header__button md-logo" aria-label="Fundamentos de Sistemas Operacionais" data-md-component="logo">
+      
+  <img src="../../_static/icon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Fundamentos de Sistemas Operacionais
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 1
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_1">
+            
+              <label class="md-header__button md-icon" title="Dark mode" for="__palette_2" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_2">
+            
+              <label class="md-header__button md-icon" title="Light mode" for="__palette_1" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+              </label>
+            
+          
+        </form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/nszchagas/FSO-notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    FSO-notes
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Fundamentos de Sistemas Operacionais" class="md-nav__button md-logo" aria-label="Fundamentos de Sistemas Operacionais" data-md-component="logo">
+      
+  <img src="../../_static/icon.png" alt="logo">
+
+    </a>
+    Fundamentos de Sistemas Operacionais
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/nszchagas/FSO-notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    FSO-notes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          SILBERSCHATZ
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          SILBERSCHATZ
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Chapter 1
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Chapter 1
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#o-que-e-um-so" class="md-nav__link">
+    O que é um SO?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-que-sos-fazem" class="md-nav__link">
+    O que SOs fazem
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sistemas-computacionais" class="md-nav__link">
+    Sistemas computacionais
+  </a>
+  
+    <nav class="md-nav" aria-label="Sistemas computacionais">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#organizacao" class="md-nav__link">
+    Organização
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#computer-system-operation" class="md-nav__link">
+    Computer-System Operation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-functions-of-interrupts" class="md-nav__link">
+    Common Functions of Interrupts
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interrupt-handling" class="md-nav__link">
+    Interrupt Handling
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#io-structure" class="md-nav__link">
+    I/O Structure
+  </a>
+  
+    <nav class="md-nav" aria-label="I/O Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#referencia-bibliografica" class="md-nav__link">
+    Referência Bibliográfica
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch2/" class="md-nav__link">
+        Chapter 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch3/" class="md-nav__link">
+        Chapter 3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch4/" class="md-nav__link">
+        Chapter 4
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch5/" class="md-nav__link">
+        Chapter 5
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch9/" class="md-nav__link">
+        Chapter 9
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          TANENBAUM
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          TANENBAUM
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resumos/mod1/" class="md-nav__link">
+        Módulo 1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resumos/mod2/" class="md-nav__link">
+        Processos
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resumos/mod3/" class="md-nav__link">
+        Módulo 3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resumos/mod4/" class="md-nav__link">
+        Módulo 4
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resumos/mod5/" class="md-nav__link">
+        Módulo 5
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#o-que-e-um-so" class="md-nav__link">
+    O que é um SO?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-que-sos-fazem" class="md-nav__link">
+    O que SOs fazem
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sistemas-computacionais" class="md-nav__link">
+    Sistemas computacionais
+  </a>
+  
+    <nav class="md-nav" aria-label="Sistemas computacionais">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#organizacao" class="md-nav__link">
+    Organização
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#computer-system-operation" class="md-nav__link">
+    Computer-System Operation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-functions-of-interrupts" class="md-nav__link">
+    Common Functions of Interrupts
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interrupt-handling" class="md-nav__link">
+    Interrupt Handling
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#io-structure" class="md-nav__link">
+    I/O Structure
+  </a>
+  
+    <nav class="md-nav" aria-label="I/O Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#referencia-bibliografica" class="md-nav__link">
+    Referência Bibliográfica
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="introducao">Introdução</h1>
+<p>Linux</p>
+<ul>
+<li>O linux é apenas o <strong>kernel</strong>, em torno do qual orbitam as distribuições.</li>
+<li>É um sistema veloz e possui comunidade ampla e atuante.</li>
+<li>Segurança satisfatória.</li>
+</ul>
+<p>MINIX</p>
+<ul>
+<li>SO criado pelo Tanenbaum com fins didáticos.</li>
+<li>
+<p>O Linux foi desenvolvido com base no MINIX. A primeira compilação do Linux foi em um MINIX do Linus Torvalds.</p>
+</li>
+<li>
+<p>Poucas opções de plataformas: x86 e arm.</p>
+</li>
+</ul>
+<p>FreeBSD</p>
+<ul>
+<li>Não é apenas um kernel, mas um sistema completo.</li>
+<li>UNIX.</li>
+<li>Derivado do Linux.</li>
+<li>Poucas opções de plataformas: x86, amd64 e arm.</li>
+</ul>
+<p>OpenBSD</p>
+<ul>
+<li>Foco em segurança em corretude.</li>
+<li>Red Team Field Manual.</li>
+<li>Provedor de ferramentas importantes para o mundo *nix: OpenSSH, OpenNTPD, OpenSMPD, realyd, spamd, httpd, tmux etc.</li>
+<li>
+<p>Suporte a ampla gama de arquiteturas.
+ NetBSD</p>
+</li>
+<li>
+<p>Amplo suporte a hardware.</p>
+</li>
+<li>Propôs gerenciador de pacotes (pckgsrc) que serviu de inspiração aos gerenciadores de pacotes dos outros BSDs e Linux.</li>
+<li>Uso de linguagens não usuais no kernel (LUA).</li>
+</ul>
+<h2 id="o-que-e-um-so">O que é um SO?</h2>
+<p>Um sistema operacional é um programa que gerencia o hardware de um computador. É um intermediário entre o usuário de um computador e o hardware deste.</p>
+<p>Os principais objetivos de um sistema operacional são:</p>
+<ul>
+<li>Executar programas do usuário e facilitar a resolução de problemas do usuário.</li>
+<li>Tornar o uso de um sistema computacional conveniente para o usuário.</li>
+<li>Usar o hardware de um computador de maneira eficiente.</li>
+</ul>
+<p>Como um sistema operacional é extenso e complexo, ele deve ser criado parte por parte. Cada uma dessas partes deve ser uma porção bem delimitada do sistema, com entradas, saídas e funções cuidadosamente definidas.</p>
+<h2 id="o-que-sos-fazem">O que SOs fazem</h2>
+<p>Um sistema computacional pode ser dividido em quatro componentes:</p>
+<ul>
+<li>Hardware: provê recursos computacionais básicos.</li>
+<li>CPU, memória, dispositivos I/O.</li>
+<li>Sistema Operacional</li>
+<li>Controla e coordena o uso do hardware por diversas aplicações e usuários.</li>
+<li>Aplicações: define a forma como recursos computacionais são usados para resolver problemas computacionais do usuário.</li>
+<li>Editores de texto, compiladores, navegadores de internet, sistemas de banco de dados, jogos.</li>
+<li>Usuários</li>
+<li>Pessoas, máquinas ou outros computadores.</li>
+</ul>
+<p><center>
+<img alt="Componentes do sistema computacional" src="../assets/ch1/10-42-48.png" />
+</center></p>
+<div style="text-align: center">
+<p>
+ Figure: Componentes do sistema computacional. Source: [1]
+</p>
+</div>
+
+<p>Podemos explorar os sistemas operacionais de dois pontos de vista:</p>
+<ul>
+<li>Ponto de vista do usuário</li>
+</ul>
+<p>Para a maioria dos usuários um sistema operacional é projetado para um único usuário usufruir dos recursos, tal sistema tem o objetivo de facilitar o uso, com algum cuidado em relação à performance e nenhuma ao uso de recursos.</p>
+<p>Em outros casos, o usuário utiliza um terminal conectado a um mainframe ou minicomputador, acessado também por outros usuários por meio de outros terminais. Nesse caso, o sistema operacional é projetado para maximizar a utilização de recursos, para garantir que CPU, memória e I/O são utilizados de forma eficiente e equilibrada entre os usuários.</p>
+<p>Há também os usuários de workstations conectadas à redes de workstations e servidores. Esses usuários têm recursos próprios, porém partilham recursos de rede e servidores. Nesse caso, o sistema operacional é projetado para encontrar um meio termo entre usabilidade pessoal e uso dos recursos.</p>
+<ul>
+<li>Ponto de vista do sistema</li>
+</ul>
+<p>Do ponto de vista do computador, o SO é o programa mais intimamente ligado ao hardware. Podemos ver um sistema operacional como um alocador de recursos, agindo como gerenciador desses recursos e resolvendo os conflitos de acesso a eles.</p>
+<p>Um sistema operacional também pode ser visto como um programa de controle, isto é, um programa que controla a execução dos programas para prevenir erros e uso impróprio do computador. Ele preocupa-se, especialmente, com a operação e controle dos dispositivos I/O.</p>
+<blockquote>
+<p>Definição de Sistema Operacional</p>
+<p>A definição mais comum é: o sistema operacional é o programa sendo executado durante todo o funcionado no computador, geralmente chamado de kernel.</p>
+</blockquote>
+<h2 id="sistemas-computacionais">Sistemas computacionais</h2>
+<h3 id="organizacao">Organização</h3>
+<p>Um computador moderno de propósito geral consiste de uma ou mais CPUs e uma quantidade de controladores de dispositivos conectados por meio de um barramento comum, que provê acesso à memória compartilhada. A CPU e os dispositivos podem funcionar em paralelo, competindo por ciclos de memória, e para assegurar o acesso ordenado à memória, o controlador da memória sincroniza o acesso à ela.</p>
+<p><center>
+<img alt="Organização de um sistema computacional moderno" src="../assets/ch1/11-35-15.png" />
+</center></p>
+<div style="text-align: center">
+<p>
+ Figure: Organização de um sistema computacional moderno. Source: [1]
+</p>
+</div>
+
+<p>Para que o computador comece a funcionar, após ser ligado ou reiniciado, é necessário que ele tenha um programa inicial para rodar, chamado de <strong>bootstrap program</strong>, que tende a ser simples. Geralmente tal programa é armazenado no hardware do computador na memória de leitura (ROM) ou na memória programável e apagável elétrica (EEPROM) e é conhecido por <strong>firmware</strong>. Ele inicializa todos os aspectos do sistema, desde os registradores da CPU, até os controladores de dispositivos e conteúdo da memória. O programa de bootstrap deve saber como carregar o sistema operacional e executá-lo, localizando o kernel do sistema operacional e carregando-o na memória.</p>
+<p>Após o carregamento do kernel, ele pode começar a fornecer serviços para o sistema e seus usuários. Alguns serviços são fornecidos fora do kernel, por programas de sistema que são carregados na memória em tempo de inicialização e tornam-se processos do sistema, ou daemons do sistema, que rodam durante todo o tempo de execução do kernel.</p>
+<p>A ocorrência de um evento geralmente é sinalizada por meio de uma interrupção, tanto do hardware quanto do software. O hardware pode provocar uma interrupção a qualquer instante enviando um sinal para a CPU, geralmente por meio do barramento. O software pode provocar uma interrupção executando uma chamada de sistema (system call ou monitor call).</p>
+<p>Quando a CPU é interrompida, ela para imediatamente o que estiver executando e transfere a execução para uma localização fixada, que geralmente contém o endereço de início da rotina a ser executada. A rotina de interrupção é executada e, após sua finalização, a CPU continua a computação que foi interrompida.</p>
+<p><center>
+<img alt="Linha do tempo de interrupções" src="../assets/ch1/08-41-30.png" />
+</center></p>
+<div style="text-align: center">
+<p>
+ Figure: Linha do tempo de interrupções. Source: [1]
+</p>
+</div>
+
+<p>Como existe uma quantidade predeterminada de interrupções possíveis, uma tabela de ponteiros para rotinas de interrupção pode ser usada para aumentar a velocidade de execução. Geralmente essa tabela é armazenada em endereços baixos de memória, onde são guardados os endereços para as rotinas de interrupção de diversos dispositivos. Esse array, ou <strong>vetor de interrupções</strong>, é indexado por um número único por dispositivo, fornecendo o endereço da rotina a ser executada.</p>
+<p>O endereço de retorno após a interrupção também deve ser armazenado, geralmente na pilha do sistema, e é recuperado para o contador de programa após a interrupção.</p>
+<h3 id="computer-system-operation">Computer-System Operation</h3>
+<ul>
+<li>I/O devices and the CPU can execute concurrently</li>
+<li>Each device controller is in charge of a particular device type and has a local buffer</li>
+<li>CPU moves data from/to main memory to/from local buffers</li>
+<li>I/O goes from the device to the controller's buffer</li>
+<li>Device controller informs CPU that it's finished its operation by causing and <strong>interrupt</strong></li>
+</ul>
+<h3 id="common-functions-of-interrupts">Common Functions of Interrupts</h3>
+<ul>
+<li>The interrupt vector contains the addresses of all the service routines.</li>
+<li>interrupt architecture must save the address of the interrupted instruction</li>
+<li>A trap or exception is a software-generated interrupt caused either by and error or user request</li>
+<li>An operating system is interrupt driven</li>
+</ul>
+<h2 id="interrupt-handling">Interrupt Handling</h2>
+<ul>
+<li>The operating system preserves the state of the CPU by storing registers and the program counter</li>
+<li>Determines which type of interrupt has occurred:</li>
+<li>polling</li>
+<li>vectored interrupt system</li>
+<li>Separate segments of code determine what action should be taken for each type of interrupt</li>
+</ul>
+<h2 id="io-structure">I/O Structure</h2>
+<h3 id="referencia-bibliografica">Referência Bibliográfica</h3>
+<ul>
+<li>SILBERSCHATZ A., GALVIN P., GAGNE G. Operating System Concepts, 9th Edition.</li>
+</ul>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      2022 Nicolas Souza
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy"], "search": "../../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.220ee61c.min.js"></script>
+      
+        
+          <script src="../../js/mathjax.js"></script>
+        
+      
+        
+          <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        
+      
+        
+          <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        
+      
+    
+  </body>
+</html>

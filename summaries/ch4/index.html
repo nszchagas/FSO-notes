@@ -1,0 +1,1295 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../ch3/">
+      
+      
+        <link rel="next" href="../ch5/">
+      
+      <link rel="icon" href="../../_static/icon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.18">
+    
+    
+      
+        <title>Chapter 4 - Fundamentos de Sistemas Operacionais</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.26e3688c.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ecc896b0.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#threads" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Fundamentos de Sistemas Operacionais" class="md-header__button md-logo" aria-label="Fundamentos de Sistemas Operacionais" data-md-component="logo">
+      
+  <img src="../../_static/icon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Fundamentos de Sistemas Operacionais
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 4
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_1">
+            
+              <label class="md-header__button md-icon" title="Dark mode" for="__palette_2" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_2">
+            
+              <label class="md-header__button md-icon" title="Light mode" for="__palette_1" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+              </label>
+            
+          
+        </form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/nszchagas/FSO-notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    FSO-notes
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Fundamentos de Sistemas Operacionais" class="md-nav__button md-logo" aria-label="Fundamentos de Sistemas Operacionais" data-md-component="logo">
+      
+  <img src="../../_static/icon.png" alt="logo">
+
+    </a>
+    Fundamentos de Sistemas Operacionais
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/nszchagas/FSO-notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    FSO-notes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          SILBERSCHATZ
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          SILBERSCHATZ
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch1/" class="md-nav__link">
+        Chapter 1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch2/" class="md-nav__link">
+        Chapter 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch3/" class="md-nav__link">
+        Chapter 3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Chapter 4
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Chapter 4
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multicore-programming" class="md-nav__link">
+    Multicore Programming
+  </a>
+  
+    <nav class="md-nav" aria-label="Multicore Programming">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#programming-challenges" class="md-nav__link">
+    Programming Challenges
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#types-of-parallelism" class="md-nav__link">
+    Types of parallelism
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multithreading-models" class="md-nav__link">
+    Multithreading models
+  </a>
+  
+    <nav class="md-nav" aria-label="Multithreading models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#many-to-one-model" class="md-nav__link">
+    Many-to-One Model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#one-to-one-model" class="md-nav__link">
+    One-to-One Model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#many-to-many-model" class="md-nav__link">
+    Many-to-Many Model
+  </a>
+  
+    <nav class="md-nav" aria-label="Many-to-Many Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#two-level-model" class="md-nav__link">
+    Two-level Model
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#thread-libraries" class="md-nav__link">
+    Thread Libraries
+  </a>
+  
+    <nav class="md-nav" aria-label="Thread Libraries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pthreads" class="md-nav__link">
+    Pthreads
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implicit-threading" class="md-nav__link">
+    Implicit Threading
+  </a>
+  
+    <nav class="md-nav" aria-label="Implicit Threading">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#thread-pools" class="md-nav__link">
+    Thread Pools
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#openmp" class="md-nav__link">
+    OpenMP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grand-central-dispatch" class="md-nav__link">
+    Grand Central Dispatch
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#threading-issues" class="md-nav__link">
+    Threading issues
+  </a>
+  
+    <nav class="md-nav" aria-label="Threading issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#semantics-of-fork-and-exec-system-calls" class="md-nav__link">
+    Semantics of fork() and exec() system calls
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-handling" class="md-nav__link">
+    Signal handling
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#thread-cancellation" class="md-nav__link">
+    Thread cancellation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#thread-local-storage" class="md-nav__link">
+    Thread local storage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scheduler-activations" class="md-nav__link">
+    Scheduler Activations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch5/" class="md-nav__link">
+        Chapter 5
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch9/" class="md-nav__link">
+        Chapter 9
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          TANENBAUM
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          TANENBAUM
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resumos/mod1/" class="md-nav__link">
+        Módulo 1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resumos/mod2/" class="md-nav__link">
+        Processos
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resumos/mod3/" class="md-nav__link">
+        Módulo 3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resumos/mod4/" class="md-nav__link">
+        Módulo 4
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resumos/mod5/" class="md-nav__link">
+        Módulo 5
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multicore-programming" class="md-nav__link">
+    Multicore Programming
+  </a>
+  
+    <nav class="md-nav" aria-label="Multicore Programming">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#programming-challenges" class="md-nav__link">
+    Programming Challenges
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#types-of-parallelism" class="md-nav__link">
+    Types of parallelism
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multithreading-models" class="md-nav__link">
+    Multithreading models
+  </a>
+  
+    <nav class="md-nav" aria-label="Multithreading models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#many-to-one-model" class="md-nav__link">
+    Many-to-One Model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#one-to-one-model" class="md-nav__link">
+    One-to-One Model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#many-to-many-model" class="md-nav__link">
+    Many-to-Many Model
+  </a>
+  
+    <nav class="md-nav" aria-label="Many-to-Many Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#two-level-model" class="md-nav__link">
+    Two-level Model
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#thread-libraries" class="md-nav__link">
+    Thread Libraries
+  </a>
+  
+    <nav class="md-nav" aria-label="Thread Libraries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pthreads" class="md-nav__link">
+    Pthreads
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implicit-threading" class="md-nav__link">
+    Implicit Threading
+  </a>
+  
+    <nav class="md-nav" aria-label="Implicit Threading">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#thread-pools" class="md-nav__link">
+    Thread Pools
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#openmp" class="md-nav__link">
+    OpenMP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grand-central-dispatch" class="md-nav__link">
+    Grand Central Dispatch
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#threading-issues" class="md-nav__link">
+    Threading issues
+  </a>
+  
+    <nav class="md-nav" aria-label="Threading issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#semantics-of-fork-and-exec-system-calls" class="md-nav__link">
+    Semantics of fork() and exec() system calls
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-handling" class="md-nav__link">
+    Signal handling
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#thread-cancellation" class="md-nav__link">
+    Thread cancellation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#thread-local-storage" class="md-nav__link">
+    Thread local storage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scheduler-activations" class="md-nav__link">
+    Scheduler Activations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="threads">Threads</h1>
+<h2 id="introduction">Introduction</h2>
+<p>A thread is a basic unit of CPU utilization, and it <strong>comprises</strong> a thread ID, a program counter, a register set and a stack. It <strong>shares</strong> with other threads in the same process its code section, data section and operating system resources, such as open files and signals (Figure 1).</p>
+<p>A <strong>heavyweight</strong> process is the one that has only one thread of control. A process that has more than one thread can perform more than one task at a time.</p>
+<p><center></p>
+<p><img alt="" src="../assets/ch4/ch4_20_15_54.png" /></p>
+<div style="text-align: center">
+<p>
+Figure 1: Difference between single threaded and multithreaded processes. Source: [1]
+</p>
+</div>
+<p></center></p>
+<p>The major benefits of multithreaded programming are:</p>
+<ul>
+<li>Responsiveness: an interactive program can keep running even if a part of it is performing a heavy and lengthy operation.</li>
+<li>Resource sharing: processes can only share resources through shared memory or message passing, but threads share resources and memory of the process to which they belong by default.</li>
+<li>Economy: allocating memory and resources for process creation is costly, so it's more economical to create and context-switch threads.</li>
+<li>Scalability: in a multiprocessor architecture threads may be running in parallel.</li>
+</ul>
+<h2 id="multicore-programming">Multicore Programming</h2>
+<p>During history, single CPU systems evolved to multi CPU systems and, more recently, to multicore systems. Whether the cores appear across CPU chips or within CPU chips, these systems are called <strong>multicore</strong> or <strong>multiprocessors</strong> systems. Multithreading programming provides a mechanism for more efficient use of multicore systems and improved concurrency.</p>
+<ul>
+<li>A system is <strong>parallel</strong> if it can perform more than one task simultaneously;</li>
+<li>A <strong>concurrent</strong> system allows more than one task to run by switching between the tasks very rapidly.</li>
+</ul>
+<h3 id="programming-challenges">Programming Challenges</h3>
+<p>Programming in multicore systems poses five different areas of challenges:</p>
+<ul>
+<li>Identifying tasks: this envolves examining applications to find areas that can be divided into separe, concurrent tasks. Ideally tasks are independent from one another and can run in parallel or individual cores.</li>
+<li>Balance: programmers must ensure that tasks running in parallel contribute equally to the overall process, so that's worth executing them in separe cores.</li>
+<li>Data splitting: the data accessed and manipulated by the tasks must be divided to run on separate cores.</li>
+<li>Data dependency: when one task depends on data from another, they must be synchronized to accommodate the data dependency.</li>
+<li>Testing and debugging: test and debug programs running in parallel on multiple cores is more difficult compared to single-threaded applications debugging.</li>
+</ul>
+<h3 id="types-of-parallelism">Types of parallelism</h3>
+<p>There are two types of parallelism:</p>
+<ul>
+<li><strong>Data parallelism</strong>: distributes subsets of the same data across multiple computing cores and all cores perform the same operation.</li>
+</ul>
+<blockquote>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg></span> Summing the elements of the array <code>[0...N]</code> in a dual core system using data parallelism could be implemented by summing <code>[0...N/2-1]</code> in one core and <code>[N/2...N]</code> on the other.</p>
+</blockquote>
+<ul>
+<li><strong>Task parallelism</strong>: involves distributing tasks (threads) across multiple cores, each thread performing a unique operation.</li>
+</ul>
+<h2 id="multithreading-models">Multithreading models</h2>
+<p>Support for threads may be provided at the user level or the kernel level. <strong>User threads</strong> are supported above the kernel and are managed without kernel support, whereas <strong>kernel threads</strong> are supported and managed directly by the operating system.</p>
+<p>A relationship between user and kernel threads must exist, and there are three common ways of establishing this relationship: many-to-one model, one-to-one model and many-to-many model.</p>
+<h3 id="many-to-one-model">Many-to-One Model</h3>
+<p>In this model (Figure 2), <strong>many user-level threads</strong> are mapped to <strong>one kernel thread</strong>. The thread management is done by the thread library in user space, so it is efficient. However, the entire process will block if a thread makes a blocking system call. Only one thread can access the kernel at a time, so multiple threads are not able to run in parallel on multicore systems.</p>
+<p><center></p>
+<p><img alt="" src="../assets/ch4/ch4_21_07_30.png" /></p>
+<div style="text-align: center">
+<p>
+Figure 2: Many-to-One model. Source: [1]
+</p>
+</div>
+
+<p></center></p>
+<h3 id="one-to-one-model">One-to-One Model</h3>
+<p>In this model (Figure 3), <strong>each user thread</strong> is mapped to <strong>a kernel thread</strong>. It provides more concurrency than the many-to-one model and allows multiple threads to run in parallel on multicore systems. Its only disadvantage is that creating a user thread requires creating the corresponding kernel thread, and the overhead of creating kernel threads can burden the performance of an application. Most implementations of this models restrict the number of threads supported by the system.</p>
+<blockquote>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 9h2V7h-2m1 13c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8m0-18A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m-1 15h2v-6h-2v6Z"/></svg></span> Linux and Windows operating systems implement the one-to-one model.</p>
+</blockquote>
+<p><center></p>
+<p><img alt="" src="../assets/ch4/ch4_21_11_24.png" /></p>
+<div style="text-align: center">
+<p>
+Figure 3: One-to-One model. Source: [1]
+</p>
+</div>
+<p></center></p>
+<h3 id="many-to-many-model">Many-to-Many Model</h3>
+<p>This model (Figure 4) multiplexes <strong>many user-level threads</strong> to a smaller or equal number of <strong>kernel threads</strong>, and this number may be specific to either a particular application or a particular machine. It suffers from neither of the previously mentioned shortcoming, developers can create as many user threads as necessary and the corresponding kernel threads can run in parallel on a multiprocessor. When a thread performs a blocking system call, the kernel can schedule another thread for execution.</p>
+<p><center></p>
+<p><img alt="" src="../assets/ch4/ch4_21_17_46.png" /></p>
+<div style="text-align: center">
+<p>
+Figure 4: Many-to-Many model. Source: [1]
+</p>
+</div>
+<p></center></p>
+<h4 id="two-level-model">Two-level Model</h4>
+<p>This model (Figure 5) is a variation of the many-to-many model, in which user threads are still multiplexed to a smaller or equal number of kernel threads, but also can be mapped to a single kernel thread.</p>
+<p><center></p>
+<p><img alt="" src="../assets/ch4/ch4_21_24_49.png" /></p>
+<div style="text-align: center">
+<p>
+Figure 5: Two-level model. Source: [1]
+</p>
+</div>
+<p></center></p>
+<h2 id="thread-libraries">Thread Libraries</h2>
+<p>A thread library provides the programmer an API to create and manage threads.</p>
+<p>There are two primary ways of implementing a thread library, it can be entirely provided in the user level, with no kernel support, or it can be implemented at the kernel level.</p>
+<p>Thread libraries provided at user level implicates in code and data structure for the library existing in user space, so that invoking a function in this library results in a local function call in user space and <strong>not a system call</strong>.</p>
+<p>Kernel-level libraries are supported directly by the operational system, so code and data structure for the library exist in kernel space and invoking a function in the library API <strong>usually results in a system call</strong> to the kernel.</p>
+<p>The three main libraries in use today are <strong>POSIX Pthreads, Windows and Java</strong>. <strong>Windows library is a kernel-level</strong> available on Windows systems, <strong>Pthreads may be provided at user or kernel level</strong>, and <strong>Java's</strong> thread library API is <strong>generally implemented using a thread library available on the host system</strong> in which the JVM is running.</p>
+<p>For POSIX and Windows any <strong>global data</strong>, declared outside of any function, is shared among all threads in the same process. For Java doesn't have the notion of global data, shared access to data must be explicitly arranged between threads. As for <strong>local data</strong>, it's is usually stored in the stack and since each thread has its own stack, each thread has its copy of local data.</p>
+<p>Threads can be created by two general strategies: synchronous and asynchronous threading.</p>
+<ul>
+<li><strong>Synchronous threading</strong>: the parent thread creates one or more children and then <strong>must wait</strong> for all of its children to terminate before resuming its execution (<strong>fork-join</strong> strategy). The threads created execute concurrently, but the parent cannot continue until this work is finished.</li>
+<li><strong>Asynchronous threading</strong>: once the parent creates a thread it continues its execution, so that <strong>parent and child execute concurrently</strong>.</li>
+</ul>
+<h3 id="pthreads">Pthreads</h3>
+<p>It's a POSIX standard defining an API for thread creation and synchronization, it's a <strong>specification</strong>, but <strong>not an implementation</strong>. Operating system designers implement this specification as needed, Linux, MAC OS X and Solaris are some of the UNIX-type systems that implement Pthreads.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pthread.h&gt;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kt">int</span><span class="w"> </span><span class="n">sum</span><span class="p">;</span><span class="w">                   </span><span class="c1">// Data shared by the threads.</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="nf">runner</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">param</span><span class="p">);</span><span class="w"> </span><span class="c1">// Pointer to the function to be shared by the threads.</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">{</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="n">pthread_t</span><span class="w"> </span><span class="n">tid</span><span class="p">;</span><span class="w">       </span><span class="c1">// Thread identifier.</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="n">pthread_attr_t</span><span class="w"> </span><span class="n">attr</span><span class="p">;</span><span class="w"> </span><span class="c1">// Set of thread attributes.</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">        </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Usage: a.out &lt;integer value&gt;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">        </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;%d must be &gt;=0 </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]));</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">    </span><span class="n">pthread_attr_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">attr</span><span class="p">);</span><span class="w"> </span><span class="c1">// Initialize thread attributes.</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">    </span><span class="cm">/* Creates thread identified by tid (passed by reference) to run the </span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="cm">        runner function with param = argv[1] (passed by reference) */</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">    </span><span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tid</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">attr</span><span class="p">,</span><span class="w"> </span><span class="n">runner</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">    </span><span class="cm">/* The calling thread waits for completion of child thread</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="cm">            The return status is not stored (NULL param); */</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">    </span><span class="n">pthread_join</span><span class="p">(</span><span class="n">tid</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;sum = %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sum</span><span class="p">);</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="p">}</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="c1">// This function is controlled by the thread</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="nf">runner</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">param</span><span class="p">)</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="p">{</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="w">    </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">upper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">atoi</span><span class="p">(</span><span class="n">param</span><span class="p">);</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">upper</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="w">        </span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="w">    </span><span class="n">pthread_exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="p">}</span>
+</code></pre></div>
+<p>To declare multiple threads, one can declare a global variable defining the number of threads and repeat the steps above for all the threads.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="w">    </span><span class="cp">#define NUM_THREADS 10</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="n">pthread_t</span><span class="w"> </span><span class="n">workers</span><span class="p">[</span><span class="n">NUM_THREADS</span><span class="p">];</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">NUM_THREADS</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">        </span><span class="n">pthread_join</span><span class="p">(</span><span class="n">workers</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+</code></pre></div>
+<h2 id="implicit-threading">Implicit Threading</h2>
+<p>The growth of multicore processing leads to applications containing hundreds or thousands of threads. Designing such applications brings a lot of challenges to programmers, and one way to address these difficulties is to transfer the creation and management of threads to the compilers and run-time libraries. This strategy is called <strong>implicit threading</strong>.</p>
+<h3 id="thread-pools">Thread Pools</h3>
+<p>The idea behind a <strong>thread pool</strong> is to create a number of threads at process startup and place them into a pool, where they sit and wait for work. Once the thread completes its service, it returns to the pool and awaits more work.</p>
+<p>Thread pools offer these benefits:</p>
+<ol>
+<li>Service a request with an existing thread is faster than waiting to create a thread;</li>
+<li>A thread pool limites the numbe of threads that exist at any one point;</li>
+<li>Separating the task to be performed from the mechanics of creating the task allow us to use different strategies for running the task, such as schedule the task to execute after a time delay.</li>
+</ol>
+<h3 id="openmp">OpenMP</h3>
+<p>OpenMP is a set of compiler directives as well as an API for programs written in C, C++ or FORTRAN that provides support for parallel programming in shared-memory environments. OpenMP identifies <strong>parallel regions</strong> as blocks of code that may run in parallel. Developers insert compiler directives in their code, and this directives instruct the OpenMP run-time library to execute the region in parallel.</p>
+<h3 id="grand-central-dispatch">Grand Central Dispatch</h3>
+<p>It's a technology for Apple's Mac OS X and iOS operating systems, it allows programmers to identify sections of code to run in parallel. Like OpenMP, GCD manages most of the details of threading.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="o">^</span><span class="p">{</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;I&#39;m a block&quot;</span><span class="p">);}</span>
+</code></pre></div>
+<blockquote>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 9h2V7h-2m1 13c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8m0-18A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m-1 15h2v-6h-2v6Z"/></svg></span> Blocks are identified by a caret (^) in front a pair of braces {};</p>
+</blockquote>
+<p>GCD schedules block for run-time execution by placing them in on a <strong>dispatch queue</strong>, that can be either <strong>serial</strong> or <strong>concurrent</strong>. The blocks placed in the queue are remove in FIFO order, but int the serial queue once a block has been removed, it must complete execution before another block is removed. In concurrent queues several blocks may be removed at a time, allowing them to execute in parallel.</p>
+<h2 id="threading-issues">Threading issues</h2>
+<h3 id="semantics-of-fork-and-exec-system-calls">Semantics of <code>fork()</code> and <code>exec()</code> system calls</h3>
+<p>The <code>fork()</code> system call is used to create a separate, duplicate process. For multithreaded programs the syntax can differ. Some UNIX systems have two versions of fork, one that duplicates all threads and another that duplicates only the thread that invoked the fork.</p>
+<p>If a thread invokes the <code>exec()</code> system call, the program specified in the parameter of <code>exec()</code> will replace the entire process, including all threads.</p>
+<h3 id="signal-handling">Signal handling</h3>
+<p>Signals are used to notify a process that a particular event has occurred, and it can be received either synchronously or asynchronously, nonetheless signals follow the same pattern:</p>
+<ol>
+<li>A signal is generated by the occurrence of a particular event;</li>
+<li>The signal is delivered to a process;</li>
+<li>Once delivered, the signal must be handled.</li>
+</ol>
+<p>Synchronous signals are delivered to the same process that performed the operation that caused the signal, and asynchronous are generated by events external to a running process.</p>
+<p>A signal may be <strong>handled</strong> by one of two possible handlers:</p>
+<ol>
+<li>A default signal handler: every signal has a default handler that the kernel runs when handling it.</li>
+<li>A user-defined signal handler: the default handler can be overridden by a user defined handler.</li>
+</ol>
+<p>Some signals, such as changing the size of a window, are ignored, but others like illegal memory access are handled by terminating the program.</p>
+<p>When a program is multithreaded, which thread must receive signals? There are some options, and the method vary depending on the type of signal generated. One can:</p>
+<ol>
+<li>Deliver the signal to the thread to which the signal applies;</li>
+<li>Deliver the signal to every thread in the process;</li>
+<li>Deliver the signal to certain threads in the process;</li>
+<li>Assign a specific thread to receive all signals for the process;</li>
+</ol>
+<p>Synchronous signals need to be delivered to the thread causing the signal, however the situation with asynchronous signals is not as clear. For example, the signal that terminates a process (<control><C>) should be sent to all threads.</p>
+<blockquote>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 9h2V7h-2m1 13c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8m0-18A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m-1 15h2v-6h-2v6Z"/></svg></span> The standard UNIX function for delivering a signal is:
+<code>kill (pid_t pid, int signal)</code></p>
+</blockquote>
+<p>Most multithreaded versions of UNIX allow a thread to specify which signals it will accept and which it'll block. Because signals need to be handled only once, a signal is typically delivered only to the first thread found that is not blocking it.</p>
+<blockquote>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 9h2V7h-2m1 13c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8m0-18A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m-1 15h2v-6h-2v6Z"/></svg></span> POSIX Pthreads provides the following function:
+<code>pthread kill(pthread_t tid, int signal)</code>
+which delivers a signal to a specified thread (tid).</p>
+</blockquote>
+<h3 id="thread-cancellation">Thread cancellation</h3>
+<p>It envolves terminating a thread before it has completed, the thread that is to be cancelled is often called the <strong>target thread</strong>, and it can be cancelled in two different scenarios:</p>
+<ol>
+<li>Asynchronous cancellation: One thread immediately terminates the target thread.</li>
+<li>Deferred cancellation: The target thread periodically checks if it should terminate, so it can properly terminate.</li>
+</ol>
+<p>The difficult arises when resources are allocated to a canceled thread or when a thread is cancelled while in the midst of updating data it's sharing with other threads. Cancelling a thread asynchronously may result in some resources not being freed. This doesn't occur with deferred cancellation, as the target thread check a flag to determine if it should be canceled, and then the cancellation occurs safely.</p>
+<blockquote>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 9h2V7h-2m1 13c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8m0-18A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m-1 15h2v-6h-2v6Z"/></svg></span> Thread cancellation is initiated with the <code>pthread_cancel()</code> in Pthreads.</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">pthread_t</span><span class="w"> </span><span class="n">tid</span><span class="p">;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tid</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">worker</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">pthread_cancel</span><span class="p">(</span><span class="n">tid</span><span class="p">);</span>
+</code></pre></div>
+<p>Pthreads supports three cancellation modes, defined by a state and type.</p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>State</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Off</td>
+<td>Disabled</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Deferred</td>
+<td>Enabled</td>
+<td>Deferred</td>
+</tr>
+<tr>
+<td>Asynchronous</td>
+<td>Enabled</td>
+<td>Asynchronous</td>
+</tr>
+</tbody>
+</table>
+<div style="text-align: center">
+<p>
+Table 1: Cancellation modes in Pthreads. Source: author.
+</p>
+</div>
+
+<p>The default mode is deferred, and cancellation occurs only when a thread reaches a <strong>cancellation point</strong>. It can be established by invoking <code>pthread_testcancel()</code>. If a cancellation request is pending, the <strong>cleanup handler</strong> function is invoked, it allows the resources allocated to this thread to be released before the thread termination.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="cm">/* </span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="cm">        Do some work for awhile.</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="cm">    */</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="n">pthread_testcancel</span><span class="p">();</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 9h2V7h-2m1 13c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8m0-18A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m-1 15h2v-6h-2v6Z"/></svg></span> On Linux systems, thread cancellation using Pthreads API is handled through signals.</p>
+</blockquote>
+<h3 id="thread-local-storage">Thread local storage</h3>
+<p>Threads share data from the process they belong to, but in some cases each thread might need its own copy of certain data, which is called <strong>thread-local storage (TLS)</strong>.</p>
+<blockquote>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 9h2V7h-2m1 13c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8m0-18A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m-1 15h2v-6h-2v6Z"/></svg></span> TLS aren't the same as local variables, as they area visible across function invocations. TLS are similar to <code>static</code> data, that are declared in the data segment, and not the stack.</p>
+</blockquote>
+<h3 id="scheduler-activations">Scheduler Activations</h3>
+<p>Communication between the kernel and the thread library may be required by the many-to-many and two-level models discussed <a href="#multithreading-models">previously</a>. Many systems implementing theses models place an intermediate data structure between the user and the kernel threads, known as <strong>lightweight process (LWP)</strong> (Figure 6). To the user-thread library, the LWP appears to be a virtual processor on which the application can <strong>schedule a user thread to run</strong>. Each LWP is attached to a kernel thread, and it is schedule to run on physical processors by the operating system. If a kernel thread blocks, it reflects up to the LWP and the user-level thread and they also block.</p>
+<p><center>
+<img alt="Figure 6: Lightweight process." src="../assets/ch4/ch4_12_25_32.png" />
+</center></p>
+<div style="text-align: center">
+<p>
+Figure 6: Lightweight process. Source: [1]
+</p>
+</div>
+
+<p>An application may require any number of LWPs to run. Typically, a LWP is required for each concurrent blocking system call, for example, if five concurrent file-read requests occur simultaneously, five LWPs are needed.</p>
+<p>The communication between kernel and user-thread library can be done by a <strong>scheduler activation</strong>. In this scheme, the kernel provides an application with a set of virtual processors (LWPs), and the application can schedule user threads onto an available virtual processor. The kernel must inform an application about certain events, in a procedure known as <strong>upcall</strong>. They are handled by the thread library, with an <strong>upcall handler</strong>, which runs in a virtual processor. When an application thread is about to block, the kernel makes an upcall to the application informing it and identifying the blocking thread. The kernel allocates a new virtual processor to the application, which runs an upcall handler on this new processor, saving the state of the blocking thread and relinquishes the virtual processor where the blocking thread is running. The upcall handler schedules another thread to run on the new virtual processor. When the event the blocking thread was waiting for happens, the kernel makes another upcall to the thread library informing that the blocking thread is now eligible to run. Since the upcall handler for this second event also needs a virtual processor, the kernel makes this allocation to a new virtual processor or one of those being used by the user threads.</p>
+<h2 id="references">References</h2>
+<p>[1] SILBERSCHATZ A., GALVIN P., GAGNE G. Operating System Concepts, 9th Edition.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      2022 Nicolas Souza
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy"], "search": "../../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.220ee61c.min.js"></script>
+      
+        
+          <script src="../../js/mathjax.js"></script>
+        
+      
+        
+          <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        
+      
+        
+          <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        
+      
+    
+  </body>
+</html>
