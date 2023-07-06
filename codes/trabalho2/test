@@ -6,28 +6,22 @@ else
     test_file=$1
 fi
 
-if [[ $test_file == *roundrobin* ]]; then
-    test_cases_prefix=test_cases/rr_tc_in
-elif [[ $test_file == *shell* ]]; then
+if [[ $test_file == *fifo* ]]; then
+    test_cases_prefix=test_cases/fifo_tc_in
+elif [[ $test_file == *lru ]]; then
 
-    test_cases_prefix=test_cases/ms_tc_in
+    test_cases_prefix=test_cases/lru_tc_in
 fi
 
 echo "Testing $test_file with test_cases from $test_cases_prefix"
 for tc in $test_cases_prefix*; do
-
+    echo $tc
     tc_id=${tc//[a-z_\/]/}
     input_file=$tc
     output_file=${tc/in/out}
     output_execution="out$tc_id"
     printf ">> Test Case #$tc_id: "
-    # printf "Input:\n"
-    # cat $input_file
-    # printf "\nExpected output:\n"
-    # cat $output_file
     gcc $test_file && ./a.out <$input_file >$output_execution
-    # printf "\nOutput:\n"
-    # cat $output_execution
     difs=$(diff -u $output_execution $output_file --color)
     if [[ $difs ]]; then
         printf "\n\033[0;31mDiferences between files:\n \033[0m"
